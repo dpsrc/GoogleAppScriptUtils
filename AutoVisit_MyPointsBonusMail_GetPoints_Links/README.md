@@ -1,6 +1,6 @@
 
 Visits all the unread and unstarred emails from the http://mypoints.com reward portal
-and automatically clicks all the links it finds.
+and automatically clicks щт all the links it finds.
 
 When there the URL has moved (status 302), it tries to obtain the redirect URL and visit it.
 
