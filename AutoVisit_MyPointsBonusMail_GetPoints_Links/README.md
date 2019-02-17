@@ -1,4 +1,6 @@
 
+AutoVisit_MyPointsBonusMail_GetPoints_Links
+
 Visits all the unread and unstarred emails from the http://mypoints.com reward portal
 and automatically clicks on all the links it finds.
 
