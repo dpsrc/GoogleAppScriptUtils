@@ -1,8 +1,71 @@
 function main() {
+  // Delete old emails from alerts@giftcardgranny.com
+  var alertEmailTo = Session.getActiveUser().getEmail();
+  var alertThreads = GmailApp.search('older_than:1d subject:"Your Daily Deal Digest" from:"alerts@giftcardgranny.com" label:DealsAndRewards -is:starred is:unread');
+  
+  alertThreads.forEach(function(alertThread) {
+    var alertEmlMessages = alertThread.getMessages();
+    
+    alertEmlMessages.forEach(function(alertEmlMessage) {
+       Logger.log("Deleting old alerts@giftcardgranny.com message: " + alertEmlMessage.getDate() + ", from:" + alertEmlMessage.getFrom() + ", to:" + alertEmlMessage.getTo() + ", subject:" + alertEmlMessage.getSubject());
+       alertEmlMessage.moveToTrash();
+    })
+  })
+  
+  // Delete old emails from Groupon
+  alertEmailTo = Session.getActiveUser().getEmail();
+  alertThreads = GmailApp.search('older_than:1d from:"noreply@r.groupon.com" (deals OR deal OR extra OR off OR "Groupon Experiences" OR spa OR beauty OR Get OR exclusive OR offer OR "To adjust how often you receive Groupon emails, including unsubscribing" OR "signed up to receive Groupon communications") label:DealsAndRewards -label:booking_shipment category:promotions -is:starred is:unread');
+  
+  alertThreads.forEach(function(alertThread) {
+    var alertEmlMessages = alertThread.getMessages();
+    
+    alertEmlMessages.forEach(function(alertEmlMessage) {
+       Logger.log("Deleting old noreply@r.groupon.com deals message: " + alertEmlMessage.getDate() + ", from:" + alertEmlMessage.getFrom() + ", to:" + alertEmlMessage.getTo() + ", subject:" + alertEmlMessage.getSubject());
+       alertEmlMessage.moveToTrash();
+    })
+  })
+  
+  // Delete old emails from raise.com newsletter
+  alertEmailTo = Session.getActiveUser().getEmail();
+  alertThreads = GmailApp.search('older_than:1d from:"newsletter@email.raise.com" label:DealsAndRewards category:promotions -is:starred is:unread');
+  
+  alertThreads.forEach(function(alertThread) {
+    var alertEmlMessages = alertThread.getMessages();
+    
+    alertEmlMessages.forEach(function(alertEmlMessage) {
+       Logger.log("Deleting old newsletter@email.raise.com deals message: " + alertEmlMessage.getDate() + ", from:" + alertEmlMessage.getFrom() + ", to:" + alertEmlMessage.getTo() + ", subject:" + alertEmlMessage.getSubject());
+       alertEmlMessage.moveToTrash();
+    })
+  })
+  
+  // Delete old emails from saveya.com newsletter
+  alertEmailTo = Session.getActiveUser().getEmail();
+  alertThreads = GmailApp.search('older_than:1d from:"postmaster@mail.saveya.com" label:DealsAndRewards category:promotions -is:starred is:unread');
+  
+  alertThreads.forEach(function(alertThread) {
+    var alertEmlMessages = alertThread.getMessages();
+    
+    alertEmlMessages.forEach(function(alertEmlMessage) {
+       Logger.log("Deleting old postmaster@mail.saveya.com deals message: " + alertEmlMessage.getDate() + ", from:" + alertEmlMessage.getFrom() + ", to:" + alertEmlMessage.getTo() + ", subject:" + alertEmlMessage.getSubject());
+       alertEmlMessage.moveToTrash();
+    })
+  })
+  
+  // Delete old emails from ebay search subscribtions
+  alertEmailTo = Session.getActiveUser().getEmail();
+  alertThreads = GmailApp.search('older_than:1d from:"ebay@ebay.com" "Turn off emails for this search" subject:NEW label:DealsAndRewards category:promotions -is:starred is:unread');
+  
+  alertThreads.forEach(function(alertThread) {
+    var alertEmlMessages = alertThread.getMessages();
+    
+    alertEmlMessages.forEach(function(alertEmlMessage) {
+       Logger.log("Deleting old ebay@ebay.com search subscription message: " + alertEmlMessage.getDate() + ", from:" + alertEmlMessage.getFrom() + ", to:" + alertEmlMessage.getTo() + ", subject:" + alertEmlMessage.getSubject());
+       alertEmlMessage.moveToTrash();
+    })
+  })
+  
   // Main part
-
-  // Here is the label these emails are labeled in my mail organizing structure.
-  // For yours, specify your label here.
+  
   var label = GmailApp.getUserLabelByName("DealsAndRewards");
   var threads = label.getThreads();
   
