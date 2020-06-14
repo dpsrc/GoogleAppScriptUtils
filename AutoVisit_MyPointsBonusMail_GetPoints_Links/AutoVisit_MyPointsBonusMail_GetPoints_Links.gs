@@ -46,11 +46,11 @@ function main() {
         // Replace =3D with = so that URL broken into pieces with =3D could be found
         rawContent = rawContent.replace(/(=3D)/gm, "=");
         
-        var matchedUrls = rawContent.match(/(https?:\/\/api.mypoints.com\/\?cmd=oh-offer-click[^">]+)/m);
+        var matchedUrls = rawContent.match(/(https?:\/\/go.mypoints.com\/\?cmd=oh-offer-click[^">]+)/m);
         
 //        if (!matchedUrls) {
-           // Debug   rawContent = "<!-- Client Creative Start --><a href=\"http[s?]://api.mypoints.com/?cmd=oh-offer-click&placementID=572=75&hash=b42GRwL3V9kgcGMcMRtv6KyI3YlacYzNtLCgELjR&taskID=1005846&redirec=tlink=&directLink=https%3A%2F%2Fwww.mypoints.com%2Fgames%3Fgid%3D229\"><=img src=\"http://www.sbx-media.com/pimages/d8/d8314007-65d2-4703-ac4c-978a=9bb83c08.jpg\" width=\"600\" height=\"450\" style=\"display:block;\" border==\"0\"></a><!-- Client Creative End -->";
-//           matchedUrls = rawContent.match(/(https?:\/\/api.mypoints.com\/\?cmd=3Doh-offer-click&.+)/m);
+           // Debug   rawContent = "<!-- Client Creative Start --><a href=\"http[s?]://go.mypoints.com/?cmd=oh-offer-click&placementID=572=75&hash=b42GRwL3V9kgcGMcMRtv6KyI3YlacYzNtLCgELjR&taskID=1005846&redirec=tlink=&directLink=https%3A%2F%2Fwww.mypoints.com%2Fgames%3Fgid%3D229\"><=img src=\"http://www.sbx-media.com/pimages/d8/d8314007-65d2-4703-ac4c-978a=9bb83c08.jpg\" width=\"600\" height=\"450\" style=\"display:block;\" border==\"0\"></a><!-- Client Creative End -->";
+//           matchedUrls = rawContent.match(/(https?:\/\/go.mypoints.com\/\?cmd=3Doh-offer-click&.+)/m);
 //        }
            
         if (matchedUrls) {
@@ -112,9 +112,7 @@ function main() {
               Logger.log("Final Status=" + status);
               
               if (status == 200) {
-                 message.moveToTrash();
                  ++i_successfullyProcessedEmails;
-                 Logger.log("Email message deleted");
               }
           }
           else
@@ -122,6 +120,9 @@ function main() {
         }
         else
            Logger.log("Unable to match Get Points Urls");
+           
+           message.moveToTrash();
+           Logger.log("Email message deleted");
       }
     });
   }); // messages.forEach(function(message)
